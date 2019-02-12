@@ -29,3 +29,26 @@ Git es un sistema de control de versiones, es decir, una aplicación que permite
 Fue ideado por Linus Torvalds (el padre del sistema operativo Linux) y actualmente es el sistema de control de versiones más extendido.
 
 ---
+
+## Configuración de Git
+
+- Establecer el nombre de usuario
+```sh
+git config --global user.name "Your-Full-Name"
+```
+- Establecer el correo del usuario
+```sh
+git config --global user.email "your-email-address"
+```
+- Activar el coloreado de la salida
+```sh
+git config --global color.ui auto
+```
+- Mostrar el estado original en los conflictos
+```sh
+git config --global merge.conflictstyle diff3
+```
+- Mostrar la configuración
+```sh
+git config --list
+```
