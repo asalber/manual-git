@@ -1,7 +1,7 @@
 ---
 title: Introducción a Git
-separator: "\n---\n"
-verticalSeparator: "\n----\n"
+separator: '^\r?\n---\r?\n$'
+verticalSeparator: '^\r?\n--\r?\n$'
 author: Alfredo Sánchez Alberca
 theme: black
 customTheme : custom
