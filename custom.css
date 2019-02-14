@@ -85,7 +85,11 @@
 }
 
 .reveal h4 {
-    font-size: 1em;
+    font-size: 1.3em;
+    color: #ffffff;
+    background-color: crimson;
+    display: inline-block;
+    padding: 5px 15px;
 }
 
 .reveal h1 {
