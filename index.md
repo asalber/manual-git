@@ -4,7 +4,7 @@ separator: '^\r?\n---\r?\n$'
 verticalSeparator: '^\r?\n--\r?\n$'
 author: Alfredo Sánchez Alberca
 theme: black
-#customTheme : custom
+customTheme : custom
 css: custom.css
 highlightTheme: monokai
 revealOptions:
@@ -19,7 +19,7 @@ logoImg: "https://github.com/asalber/asalber.github.io/raw/master/images/logo-gi
 
 Autor [Alfredo Sánchez Alberca](http://aprendeconalf.es)
 
-<img width="178" height="238" data-src="/img/logo-git.png" alt="Logo de Git">
+<img width="178" height="238" data-src="img/logo-git.png" alt="Logo de Git">
 
 ---
 
@@ -41,7 +41,7 @@ Autor [Alfredo Sánchez Alberca](http://aprendeconalf.es)
 
 A diferencia de otros SCV Git tiene una arquitectura _distribuida_, lo que significa que en lugar de guardar todos los cambios de un proyecto en un único sitio, cada usuario contiene una copia del repositorio con el historial de cambios completo del proyecto. Esto aumenta significativamente su rendimiento.
 
-<img width="178" height="238" data-src="/img/logo-git.png" alt="Logo de Git">
+<img width="178" height="238" data-src="img/logo-git.png" alt="Logo de Git">
 
 ---
 
@@ -78,16 +78,16 @@ git config --list
 ### Creación de un respositorio nuevo 
 #### `git init`
 
-`git init <nombre-repositorio>` crea un repositorio nuevo con el nombre `<nombre-repositorio>`.
+- `git init <nombre-repositorio>` crea un repositorio nuevo con el nombre `<nombre-repositorio>`.  
 
-Este comando crea crea una nueva carpeta con el nombre del repositorio, que a su vez contiene otra carpeta oculta llamada `.git` que contiene la base de datos donde registrar los cambios en el repositorio.
+Este comando crea crea una nueva carpeta con el nombre del repositorio, que a su vez contiene otra carpeta oculta llamada `.git` que contiene la base de datos donde se registran los cambios en el repositorio.
 
 --
 
 ## Copia de repositorios
 #### `git clone`
 
-`git clone <url-repositorio>` crea una copia local del repositorio ubicado en la dirección `<url-repositorio>`.
+- `git clone <url-repositorio>` crea una copia local del repositorio ubicado en la dirección `<url-repositorio>`.
 
 A partir de que se hace la copia, los dos repositorios, el original y la copia, son independientes, es decir, cualquier cambio en uno de ellos no se verá reflejado en el otro.  
 
@@ -106,20 +106,22 @@ Con Git, cualquier cambio que hagamos en un proyecto tiene que pasar por tres es
 ### Añadir cambios a la zona de intercambio temporal
 #### `git add`
 
-- Para añadir los cambios en un fichero en el directorio de trabajo a la zona de intercambio temporal se utiliza el comando `git add <fichero>`
-- Se pueden añadir los cambios de varios ficheros a la vez o incluso de una carpeta entera indicando el nombre y la ruta de la carpeta.
-- Se pueden añadir todos los cambios de todos los ficheros no guardados aún con el comando `git add .`.
+- `git add <fichero>` añade los cambios en el fichero `<fichero>` del directorio de trabajo a la zona de intercambio temporal.
+
+- `git add <carpeta>` añade los cambios en todos los ficheros de la carpeta `<carpeta>` del directorio de trabajo a la zona de intercambio temporal.
+
+- `git add .` añade todos los cambios de todos los ficheros no guardados aún en la zona de intercambio temporal.
 
 --
 
 ### Añadir cambios al repositorio
 #### `git commit`
 
-- Para añadir al repositorio los cambios finales desde la zona temporal de intercambio se utiliza el comando `git commit -m "mensaje"`, donde `"mensaje"` es un breve mensaje describiendo los cambios realizados que se asociará al estado actual del repositorio.
+- `git commit -m "mensaje"` añade al repositorio todos los cambios almacenados en la zona de intercambio temporal creando una nueva versión del proyecto. `"mensaje"` es un breve mensaje describiendo los cambios realizados que se asociará a la nueva versión del proyecto.
 
 --
 
-<img data-src="/img/git-add-commit.png" alt="Logo de Git">
+<img data-src="img/git-add-commit.png" alt="Logo de Git">
 
 ---
 
@@ -138,81 +140,91 @@ Si un fichero del repositorio no ha cambiado en el commit, el árbol apunta al b
 
 Cada commit tiene asociado un código hash de 40 caracteres hexadecimales que lo identifica de manera única.
 Hay dos formas de referirse a un commit:
-- Nombre absoluto: Se utiliza su código hash (basta indicar los 4 o 5 primeros dígitos).
-- Nombre relativo: Se utiliza la palabra `HEAD` para referirse siempre al último commit. Para referirse al penúltimo commit se utiliza `HEAD~1`, al antepenúltimo `HEAD~2`, etc.
+- **Nombre absoluto**: Se utiliza su código hash (basta indicar los 4 o 5 primeros dígitos).
+- **Nombre relativo**: Se utiliza la palabra `HEAD` para referirse siempre al último commit. Para referirse al penúltimo commit se utiliza `HEAD~1`, al antepenúltimo `HEAD~2`, etc.
 
 --
 
-<img data-src="/img/modelo-datos-git.png" alt="Modelo de datos de Git">
+<img data-src="img/modelo-datos-git.png" alt="Modelo de datos de Git">
 
 ---
 
-## Consultar el estado de un repositorio
+## Estado e historia de un repositorio
+
+### Mostrar el estado de un repositorio
+
 #### `git status`
 
-Para consultar el estado de los cambios en cada momento se utiliza el comando `git status`.
+- `git status` muestra el estado de los cambios en el repositorio desde la última versión guardada. En particular, muestra los ficheros con cambios en el directorio de trabajo que no se han añadido a la zona de intercambio temporal y los ficheros en la zona de intercambio temporal que no se han añadido al repositorio.
 
-Este comando muestra los ficheros con cambios en el directorio de trabajo que no se han añadido a la zona de intercambio temporal y los ficheros en la zona de intercambio temporal que no se han añadido al repositorio.
+--
+
+### Mostrar el historial de versiones de un repositorio
+
+#### `git log`
+
+- `git log` muestra el historial de commits de un repositorio ordenado cronológicamente. Para cada commit muestra su código hash, el autor, la fecha, la hora y el mensaje asociado.
+
+--
+
+### Mostrar los datos de un commit
+
+#### `git show`
+
+- `git show` muestra el usuario, el día, la hora y el mensaje del último commit, así como las diferencias con el anterior.
+
+- `git show <commit>` muestra el usuario, el día, la hora y el mensaje del commit indicado, así como las diferencias con el anterior.
+
+--
+
+### Mostrar el historial de cambios de un fichero
+
+#### `git annotate`
+
+- `git annotate` muestra el historial de cambios de un fichero ordenado cronológicamente.  
+Cada línea de la salida contiene los 8 primeros dígitos del código hash del commit correspondiente al cambio, el autor de los cambio, la fecha, el número de línea del fichero donde se produjo el cambio y el contenido de la línea.
 
 ---
 
 ## Mostrar las diferencias entre versiones
+
 #### `git diff`
 
 - `git diff` muestra las diferencias entre el directorio de trabajo y la zona de intercambio temporal.
+
 - `git diff --cached` muestra las diferencias entre la zona de intercambio temporal y el último commit.
+
 - `git diff HEAD` muestra la diferencia entre el directorio de trabajo y el último commit.
-
----
-
-## Mostrar un los datos de un commit
-#### `git show`
-
-- `git show` muestra el usuario, el día, la hora y el mensaje del último commit, así como las diferencias con el anterior.
-- `git show <commit>` muestra el usuario, el día, la hora y el mensaje del commit indicado, así como las diferencias con el anterior.
-
----
-
-## Mostrar el historial de commits de un repositorio
-#### `git log`
-
-`git log` muestra el historial de commits de un respoitorio ordenado cronológicamente. Para cada commit muestra su código hash, el autor, la fecha, la hora y el mensaje asociado.
-
----
-
-## Mostrar el historial de cambios de un fichero
-#### `git annotate`
-
-`git annotate` muestra el historial de cambios de un fichero ordenado cronológicamente.
-
-Cada línea de la salida contiene los 8 primeros dígitos del código hash del commit correspondiente al cambio, el autor de los cambio, la fecha, el número de línea del fichero donde se produjo el cambio y el contenido de la línea.
 
 ---
 
 ## Deshacer cambios
 
 ### Eliminar cambios del directorio de trabajo o volver a una versión anterior
+
 #### `git checkout`
 
-- `git checkout <commit> -- <file>` actualiza el fichero `<file>` a la versión correspondiente al commit `<commit>`. Suele utilizarse para eliminar los cambios en un fichero que no han sido guardados aún en la zona de intercambio temporal, mediante el comando `git checkout HEAD -- <file>`.
+- `git checkout <commit> -- <file>` actualiza el fichero `<file>` a la versión correspondiente al commit `<commit>`.  
+Suele utilizarse para eliminar los cambios en un fichero que no han sido guardados aún en la zona de intercambio temporal, mediante el comando `git checkout HEAD -- <file>`.
 
 --
 
 ### Eliminar cambios de la zona de intercambio temporal
+
 #### `git reset`
 
-`git reset <fichero>` elimina los cambios del fichero `<fichero`> de la zona de intercambio temporal, pero preserva los cambios en el directorio de trabajo.
+- `git reset <fichero>` elimina los cambios del fichero `<fichero`> de la zona de intercambio temporal, pero preserva los cambios en el directorio de trabajo.
 
 Para eliminar por completo los cambios de un fichero que han sido guardados en la zona de intercambio temporal hay que aplicar este comando y después `git checkout HEAD -- <fichero>`.
 
 --
 
 ### Eliminar cambios de un commit
+
 #### `git reset`
 
 - `git reset --hard <commit>` elimina todos los cambios desde el commit `<commit>` y actualiza el HEAD este commit.  
-¡Ojo! Usar con cuidado este comando pues los cambios posteriores al commit indicado se pierden por completo.
-
+¡Ojo! Usar con cuidado este comando pues los cambios posteriores al commit indicado se pierden por completo.  
 Suele usarse para eliminar todos los cambios en el directorio de trabajo desde el último commit mediante el comando `git reset --hard HEAD`.
 
 - `git reset <commit>` actualiza el HEAD al commit `<commit>`, es decir, elimina todos los commits posteriores a este commit, pero no elimina los cambios del directorio de trabajo.
@@ -220,7 +232,7 @@ Suele usarse para eliminar todos los cambios en el directorio de trabajo desde e
 ---
 
 ## Ramas
- 
+
 Inicialmente cualquier repositorio tiene una única rama llamada **master** donde se van sucediendo todos los commits de manera lineal.
 
 Una de las característica más útiles de Git es que permite la creación de ramas para trabajar en distintas versiones de un proyecto a la vez.
@@ -232,40 +244,48 @@ Cuando se termina el desarrollo de las nuevas funcionalidades las ramas se puede
 --
 
 ### Creación de ramas
+
 #### `git branch`
 
 - `git branch <rama>` crea una nueva rama con el nombre `<rama>` en el repositorio a partir del último commit, es decir, donde apunte HEAD.
 
 Al crear una rama a partir de un commit, el flujo de commits se bifurca en dos de manera que se pueden desarrollar dos versiones del proyecto en paralelo.
 
-<img height="300px" data-src="/img/ramificacion.png" alt="Dos ramas del repositorio git">
+<img height="300px" data-src="img/ramificacion.png" alt="Dos ramas del repositorio git">
 
 --
 
 ### Desarrollo en ramas diferentes
 
-<img data-src="/img/dos-ramas.png" alt="Dos ramas del repositorio git">
+<img data-src="img/dos-ramas.png" alt="Dos ramas del repositorio git">
 
 --
 
 ### Listado de ramas
+
 #### `git log`
 
 - `git branch` muestra las ramas activas de un repositorio indicando con __*__ la rama activa en ese momento.
 
-- `git log --graph --all --oneline`SS muestra la historia del repositorio en forma de grafo (--graph) incluyendo todas las ramas (--all).
+- `git log --graph --all --oneline` muestra la historia del repositorio en forma de grafo (--graph) incluyendo todas las ramas (--all).
+
+--
 
 ### Cambio de ramas
+
 #### `git checkout`
 
 - `git checkout <rama>` actualiza los ficheros del directorio de trabajo a la versión del repositorio correspondiente a la rama `<rama>`, HEAD pasa a apuntar al último commit de esta rama.
 
+--
+
 ### Fusión de ramas
+
 #### `git merge`
 
-`git merge <rama>` integra los cambios de la rama `<rama>` en la rama actual a la que apunta HEAD.
+- `git merge <rama>` integra los cambios de la rama `<rama>` en la rama actual a la que apunta HEAD.
 
-<img data-src="/img/fusion-ramas.png" alt="Dos ramas del repositorio git">
+<img data-src="img/fusion-ramas.png" alt="Dos ramas del repositorio git">
 
 --
 
@@ -295,11 +315,12 @@ Existen muchos proveedores de alojamiento para repositorios Git pero el más usa
 
 La principal ventaja de GitHub es que permite albergar un número ilimitado de repositorios tanto públicos como privados, y que además ofrece servicios de registro de errores, solicitud de nuevas funcionalidades, gestión de tareas, wikis o publicación de páginas web, para cada proyecto, incluso con el plan básico que es gratuito.
 
-<img height="100" data-src="/img/logo-github.png" alt="Logo de GitHub"><img height="150" data-src="/img/logo-octocat.png" alt="Logo de GitHub">
+<img height="100" data-src="img/logo-github.png" alt="Logo de GitHub"><img height="150" data-src="img/logo-octocat.png" alt="Logo de GitHub">
 
 --
 
 ### Añadir un repositorio remoto
+
 #### `git remote add`
 
 - `git remote add <repositorio-remoto> <url>` crea un enlace con el nombre `<repositorio-remoto>` a un repositorio remoto ubicado en la dirección `<url>`.
@@ -309,14 +330,17 @@ Cuando se añade un repositorio remoto a un repositorio, Git seguirá también l
 --
 
 ### Lista de repositorios remotos
+
 #### `git remote`
 
 - `git remote` muestra un listado con todos los enlaces a repositorios remotos definidos en un repositorio local.
+
 - `git remote -v` muestra además las direcciones url para cada repositorio remoto.
 
 --
 
 ### Descargar cambios desde un repositorio remoto
+
 #### `git pull`
 
 - `git pull <remoto> <rama>` descarga los cambios de la rama `<rama>` del repositorio remoto `<remoto>` y los integra en la última versión del repositorio local, es decir, en el HEAD.
@@ -326,6 +350,7 @@ Cuando se añade un repositorio remoto a un repositorio, Git seguirá también l
 --
 
 ### Subir cambios a un repositorio remoto
+
 #### `git push`
 
 - `git push <remoto> <rama>` sube al repositorio remoto `<remoto>` los cambios de la rama `<rama>` en el repositorio local.
