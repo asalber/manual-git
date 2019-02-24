@@ -280,7 +280,9 @@ Al crear una rama a partir de un commit, el flujo de commits se bifurca en dos d
 
 #### `git checkout`
 
-- `git checkout <rama>` actualiza los ficheros del directorio de trabajo a la versión del repositorio correspondiente a la rama `<rama>`, HEAD pasa a apuntar al último commit de esta rama.
+- `git checkout <rama>` actualiza los ficheros del directorio de trabajo a la última versión del repositorio correspondiente a la rama `<rama>`, y la activa, es decir, HEAD pasa a apuntar al último commit de esta rama.
+
+- `git checkout -b <rama>` crea una nueva rama con el nombre `<rama>` y la activa, es decir, HEAD pasa a apuntar al último commit de esta rama. Este comando es equivalente aplicar los comandos `git branch <rama>` y después `git checkout <rama>`.
 
 --
 
@@ -309,6 +311,15 @@ La resolución debe hacerse manualmente observando los cambios que interfieren y
 
 - `git rebase <rama-1> <rama-2>` replica los cambios de la rama `<rama-2>` en la rama `<rama-1>` partiendo del ancestro común de ambas ramas.
 El resultado es el mismo que la fusión de las dos ramas pero la bifurcación de la `<rama-2>` desaparece ya que sus commits pasan a estar en la `<rama-1>`.
+
+--
+
+### Eliminación de ramas
+#### `git branch -d`
+
+- `git branch -d <rama>` elimina la rama de nombre `<rama>` siempre y cuando haya sido fusionada previamente.
+
+- `git branch -D <rama>` elimina la rama de nombre `<rama>` incluso si no ha sido fusionada. Si la rama no ha sido fusionada previamente se perderán todos los cambios de esa rama.
 
 ---
 
@@ -367,6 +378,25 @@ Cuando se añade un repositorio remoto a un repositorio, Git seguirá también l
 #### `git push`
 
 - `git push <remoto> <rama>` sube al repositorio remoto `<remoto>` los cambios de la rama `<rama>` en el repositorio local.
+
+--
+
+### Colaboración en repositorios remotos de GitHub
+
+Existen dos formas de colaborar en un repositorio alojado en GitHub:
+
+- Ser colaborador del repositorio.
+    1. Recibir autorización de colaborador por parte de la persona propietaria del proyecto.
+    2. Clonar el repositorio en local.
+    3. Hacer cambios en el repositorio local.
+    4. Subir los cambios al repositorio remoto. Primero hacer `git pull` para integrar los cambios remotos en el repositorio local y luego `git push` para subir los cambios del repositorio local al remoto.
+
+--
+
+- Replicar el repositorio y solicitar integración de cambios.
+    1. Replicar el repositorio remoto en nuestra cuenta de GitHub mediante un `fork`.
+    2. Hacer cambios en nuestro repositorio remoto.
+    3. Solicitar a la persona propietaria del repositorio original que integre nuestros cambios en su repositorio mediante un `pull request`.
 
 ---
 
