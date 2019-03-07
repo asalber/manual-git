@@ -17,7 +17,9 @@ logoImg: "https://github.com/asalber/asalber.github.io/raw/master/images/logo-gi
 
 ### Sistema de control de versiones
 
-Autor [Alfredo Sánchez Alberca](http://aprendeconalf.es)
+Autor: Alfredo Sánchez Alberca ([asalber@ceu.es](mailto:asalber@ceu.es))  
+http://aprendeconalf.es
+
 
 <img width="178" height="238" data-src="img/logo-git.png" alt="Logo de Git">
 
